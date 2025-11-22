@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Não Encontrada - MundiWiki</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #f4f4f4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .error-code-title {
+      font-size: 100px;
+      color: #ff0000;
+      margin-bottom: 20px;
+      transition: color 0.3s ease;
+    }
+
+    .error-code-title:hover {
+      color: #ffc400;
+    }
+
+    h1 {
+      font-size: 50px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 20px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .pikachu-404 {
+      margin: 20px 0;
+    }
+
+    .pikachu-404 img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    a {
+      color: #007BFF;
+      text-decoration: none;
+      font-size: 18px;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .error-details {
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="error-code-title">404</h1>
+  <p>Pikachu está tentando achar a página que você procura...</p>
+  
+  <div class="pikachu-404">
+    <img src="images/pikachu-404.jpg" alt="Pikachu procurando">
+  </div>
+  
+  <p>Código de erro: <span class="error-details" id="error-code"></span></p>
+  <a href="/">Voltar para a página inicial</a>
+
+  <script>
+    const errorCodes = [404, 403, 500, 502, 503, 504];
+    const randomIndex = Math.floor(Math.random() * errorCodes.length);
+    const randomErrorCode = errorCodes[randomIndex];
+    document.getElementById('error-code').textContent = randomErrorCode;
+  </script>
+</body>
+</html>

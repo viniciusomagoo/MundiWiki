@@ -1,0 +1,428 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Verdana', 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #000;
+    line-height: 1.6;
+    padding-left: 250px;
+    padding-top: 40px;
+}
+
+/* Links existentes (vermelho) e não-existentes (azul) */
+a.link-exists {
+    color: #c00;
+    text-decoration: none;
+}
+
+a.link-exists:hover {
+    text-decoration: underline;
+    color: #900;
+}
+
+a.link-missing {
+    color: #0645ad;
+    text-decoration: none;
+}
+
+a.link-missing:hover {
+    text-decoration: underline;
+    color: #033d8b;
+}
+
+/* Tooltip de prévia (Deixado intacto) */
+.link-preview {
+    position: fixed;
+    background-color: #fff;
+    border: 2px solid #aaa;
+    border-radius: 5px;
+    padding: 12px 15px;
+    max-width: 350px;
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    display: none;
+}
+
+.link-preview.show {
+    display: block;
+    opacity: 1;
+}
+
+.link-preview::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #aaa;
+}
+
+.link-preview::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 21px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #fff;
+}
+
+/* Barra superior */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, #666, #444);
+    color: #fff;
+    padding: 8px 0;
+    z-index: 1000;
+    border-bottom: 2px solid #333;
+}
+
+.top-bar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.wiki-slogan {
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* Sidebar estilo Desciclopédia */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 40px;
+    width: 250px;
+    height: calc(100vh - 40px);
+    background-color: #f0f0f0;
+    border-right: 1px solid #aaa;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.logo-box {
+    background: linear-gradient(to bottom, #fff, #e6e6e6);
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo-box h2 {
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-menu h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    margin: 20px 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #aaa;
+}
+
+.nav-menu ul {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.nav-menu ul li {
+    margin: 5px 0;
+}
+
+.nav-menu ul li a {
+    font-size: 13px;
+    display: block;
+    padding: 3px 5px;
+    border-radius: 3px;
+}
+
+.nav-menu ul li a:hover {
+    background-color: #ddd;
+}
+
+/* Conteúdo principal */
+.content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.page-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #666;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 36px;
+    color: #000;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #666;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.main-content {
+    padding: 20px 0;
+}
+
+.intro-section {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.intro-section p {
+    margin-bottom: 10px;
+}
+
+/* Estilo do aviso de conteúdo adaptado */
+.warning-box {
+    background-color: #ffe0e0; /* Cor de fundo de aviso, mais clara */
+    border: 1px solid #ff4d4d;
+    border-left: 4px solid #cc0000;
+    padding: 10px;
+    border-radius: 3px;
+    color: #cc0000; /* Cor de texto vermelha */
+    font-weight: bold;
+    text-align: center; /* Centraliza o texto do aviso */
+}
+
+.section-title {
+    font-size: 24px;
+    color: #000;
+    margin: 30px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #aaa;
+}
+
+/* Grid de artigos estilo wiki (mantido para outros usos, mas não usado diretamente nos ships) */
+.articles-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.wiki-article {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.wiki-article:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.article-image {
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.article-image img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.article-content {
+    flex: 1;
+}
+
+.article-content h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.article-content p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.article-quote {
+    background-color: #f0f0f0;
+    border-left: 3px solid #0645ad;
+    padding: 10px;
+    margin: 15px 0;
+    font-style: italic;
+    color: #555;
+}
+
+.read-more {
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Seção de lista de Ships (usando o estilo small article para cada ship) */
+.shipping-list {
+    margin: 30px 0;
+    padding: 0;
+    clear: both;
+}
+
+.shipping-list .wiki-article-small {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    overflow: auto;
+    transition: all 0.3s ease;
+    display: block;
+    min-height: 120px;
+}
+
+.shipping-list .wiki-article-small:last-child {
+    margin-bottom: 0;
+}
+
+.shipping-list .wiki-article-small:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-color: #999;
+    background-color: #fafafa;
+}
+
+.shipping-list .wiki-article-small img {
+    width: 150px;
+    height: auto;
+    max-height: 150px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    float: right;
+    margin: 0 0 10px 15px;
+    display: block;
+}
+
+.shipping-list .wiki-article-small h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    color: #000;
+    font-weight: bold;
+}
+
+.shipping-list .wiki-article-small h4 a {
+    font-weight: bold;
+}
+
+.shipping-list .wiki-article-small p {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 5px; /* Reduzido o espaço para listas de info */
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.shipping-list .wiki-article-small p strong {
+    font-weight: bold;
+    color: #000;
+}
+
+/* Limpa o float após os artigos pequenos */
+.shipping-list .wiki-article-small::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Box de estatísticas (removido, pois não é relevante para um artigo específico de ship) */
+/*
+.stats-box {
+    ...
+}
+*/
+
+/* Footer */
+.footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-top: 2px solid #aaa;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding-left: 0;
+        padding-top: 40px;
+    }
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #aaa;
+    }
+
+    .content {
+        margin: 10px;
+    }
+
+    .wiki-article {
+        flex-direction: column;
+    }
+
+    .article-image {
+        width: 100%;
+    }
+    
+    .shipping-list .wiki-article-small img {
+        float: none;
+        width: 100%;
+        max-width: 300px;
+        display: block;
+        margin: 10px auto;
+    }
+}
